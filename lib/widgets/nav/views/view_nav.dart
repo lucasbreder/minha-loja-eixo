@@ -67,6 +67,9 @@ class _NavState extends State<Nav> {
                       child: GestureDetector(
                         onTap: (() {
                           controllerNav.activeMenu.value = 'Dashboard';
+                          controllerDeals.queryParams.clear();
+                          controllerDeals.filterItemsByQuery(
+                              params: controllerDeals.queryParams);
                           Navigator.pushNamed(context, 'dashboard');
                         }),
                         child: Text('Dashboard',

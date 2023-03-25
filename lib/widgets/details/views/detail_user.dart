@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minha_loja_eixo/pages/page_user.dart';
+import 'package:minha_loja_eixo/widgets/dashboard/views/dashboard_deals_chart.dart';
 import 'package:minha_loja_eixo/widgets/details/views/detail_profile_social_link.dart';
 import 'package:minha_loja_eixo/widgets/details/views/detail_profile_user.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
@@ -172,8 +173,12 @@ class DetailUser extends StatelessWidget {
           height: 40,
         ),
         const ListDeals(
-          showTotal: true,
-        )
+          showTotal: false,
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        const DashboardDealsChart(),
       ],
     );
   }
