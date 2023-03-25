@@ -4,6 +4,7 @@ import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart'
 import 'package:minha_loja_eixo/widgets/lists/views/view_list_deals.dart';
 import 'package:minha_loja_eixo/widgets/forms/data/data_form_deal.dart';
 import 'package:minha_loja_eixo/widgets/forms/views/base_form.dart';
+import 'package:minha_loja_eixo/widgets/lists/views/view_list_last_deals.dart';
 import 'package:minha_loja_eixo/widgets/scaffold/views/base_scaffold.dart';
 import 'package:minha_loja_eixo/widgets/titles/views/view_base_title.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -78,7 +79,9 @@ class PageCreateDeals extends StatelessWidget {
                     title: 'Últimas Vendas',
                     fontSize: 30.0,
                   ),
-                  ListDeals(),
+                  ListLastDeals(
+                    limit: 5,
+                  ),
                 ],
               ),
             )

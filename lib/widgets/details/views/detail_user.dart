@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:minha_loja_eixo/pages/page_user.dart';
 import 'package:minha_loja_eixo/widgets/details/views/detail_profile_social_link.dart';
 import 'package:minha_loja_eixo/widgets/details/views/detail_profile_user.dart';
+import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
 import 'package:minha_loja_eixo/widgets/lists/models/model_user.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_list_deals.dart';
 
@@ -13,6 +15,7 @@ class DetailUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User userData = User.fromJson(data);
+    ControllerDeals controller = Get.put(ControllerDeals());
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

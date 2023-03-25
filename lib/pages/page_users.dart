@@ -10,7 +10,7 @@ class PageUsers extends StatelessWidget {
     return const BaseScaffold(
       title: 'Profissionais',
       children: [
-        ListUsers(apiRoute: 'https://api.eixo.site/allUsers'),
+        ListUsers(),
       ],
     );
   }

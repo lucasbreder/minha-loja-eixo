@@ -42,7 +42,7 @@ class _PageLoginState extends State<PageLogin> {
         BaseForm(
           formInputs: loginInputs,
           apiRoute: 'https://api.eixo.site/loginMyStore/',
-          redirectRoute: 'cadastrar-venda',
+          redirectRoute: 'dashboard',
           successMessage: 'Você logou!',
           isLogin: true,
           formTheme: 'light',

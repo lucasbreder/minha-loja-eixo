@@ -4,15 +4,14 @@ import 'package:minha_loja_eixo/widgets/filters/views/view_filter_checkbox.dart'
 import 'package:minha_loja_eixo/widgets/filters/views/view_filter_orderBy.dart';
 import 'package:minha_loja_eixo/widgets/filters/views/view_filter_per_page.dart';
 import 'package:minha_loja_eixo/widgets/filters/views/view_filter_search.dart';
+import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_users.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_list_user_item.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_pagination.dart';
 import 'package:minha_loja_eixo/widgets/loader/views/Loader.dart';
 
 class ListUsers extends StatefulWidget {
-  const ListUsers({required this.apiRoute, super.key});
-
-  final String apiRoute;
+  const ListUsers({super.key});
 
   @override
   State<ListUsers> createState() => _ListUsersState();
@@ -20,6 +19,7 @@ class ListUsers extends StatefulWidget {
 
 class _ListUsersState extends State<ListUsers> {
   ControllerUsers controllerUsers = Get.put(ControllerUsers());
+  ControllerDeals controllerDeals = Get.put(ControllerDeals());
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,16 @@ class _ListUsersState extends State<ListUsers> {
                         children: [
                           for (Map<String, dynamic> user
                               in controllerUsers.itemsList)
-                            ListUserItem(data: user),
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  controllerDeals.filterItemsByQuery(
+                                      params: {'userId': user['id']});
+                                },
+                                child: ListUserItem(data: user),
+                              ),
+                            ),
                         ],
                       ),
             controllerUsers.pagesInfo.value.lastPage != null

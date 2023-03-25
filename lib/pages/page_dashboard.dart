@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:minha_loja_eixo/widgets/forms/data/data_form_deal.dart';
-import 'package:minha_loja_eixo/widgets/forms/views/base_form.dart';
+import 'package:minha_loja_eixo/widgets/dashboard/views/dashboard_box.dart';
+import 'package:minha_loja_eixo/widgets/dashboard/views/dashboard_deals_chart.dart';
+import 'package:minha_loja_eixo/widgets/lists/views/view_list_last_deals.dart';
+import 'package:minha_loja_eixo/widgets/lists/views/view_list_top_users.dart';
 import 'package:minha_loja_eixo/widgets/scaffold/views/base_scaffold.dart';
 
 class PageDashboard extends StatelessWidget {
@@ -8,9 +10,38 @@ class PageDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BaseScaffold(
+    return BaseScaffold(
       title: 'Dashboard',
-      children: [Text('Em Construção')],
+      children: [
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.start,
+          alignment: WrapAlignment.start,
+          direction: Axis.horizontal,
+          spacing: 40,
+          runSpacing: 40,
+          children: const [
+            DashboardDealsChart(),
+            DashboardBox(
+              title: 'Últimas Vendas',
+              child: ListLastDeals(
+                limit: 5,
+              ),
+            ),
+            DashboardBox(
+              title: 'Top 5 Profissionais',
+              child: ListTopUsers(
+                limit: 5,
+              ),
+            ),
+            DashboardBox(
+              title: 'Pendências',
+              child: ListLastDeals(
+                noConfimed: true,
+              ),
+            ),
+          ],
+        )
+      ],
     );
   }
 }

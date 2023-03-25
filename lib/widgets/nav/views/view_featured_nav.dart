@@ -6,18 +6,11 @@ class NavFeatured extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(minWidth: 200, maxWidth: 300),
-      child: Row(
-        children: [
-          ButtonGeneral(
-            text: 'Cadastrar Venda',
-            onTap: (() {
-              Navigator.pushNamed(context, 'cadastrar-venda');
-            }),
-          ),
-        ],
-      ),
+    return ButtonGeneral(
+      text: 'Cadastrar Venda',
+      onTap: (() {
+        Navigator.pushNamed(context, 'cadastrar-venda');
+      }),
     );
   }
 }

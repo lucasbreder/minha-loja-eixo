@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
+import 'package:minha_loja_eixo/widgets/lists/controllers/controller_users.dart';
+import 'package:minha_loja_eixo/widgets/nav/controllers/controller_nav.dart';
 import 'package:minha_loja_eixo/widgets/nav/views/view_featured_nav.dart';
 
-class Nav extends StatelessWidget {
+class Nav extends StatefulWidget {
   const Nav({super.key});
 
   @override
+  State<Nav> createState() => _NavState();
+}
+
+class _NavState extends State<Nav> {
+  String activeMenu = '';
+
+  @override
   Widget build(BuildContext context) {
-    ControllerDeals controller = Get.put(ControllerDeals());
+    ControllerDeals controllerDeals = Get.put(ControllerDeals());
+    ControllerUsers controllerUsers = Get.put(ControllerUsers());
+    ControllerNav controllerNav = Get.put(ControllerNav());
+
     return Container(
       padding: const EdgeInsets.fromLTRB(0, 45.0, 0, 45.0),
       decoration: BoxDecoration(
@@ -31,22 +44,37 @@ class Nav extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 100, maxWidth: 1100),
           child: Wrap(
             direction: Axis.horizontal,
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Container(
                 margin: const EdgeInsets.only(top: 20.0),
                 constraints: const BoxConstraints(minWidth: 200, maxWidth: 600),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    SvgPicture.asset(
+                      'assets/images/eixo_brand.svg',
+                      semanticsLabel: 'Eixo',
+                      width: 120,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(
+                      width: 30,
+                    ),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: (() {
-                          controller.queryParams.clear();
-                          controller.filterItemsByQuery(
-                              params: controller.queryParams);
-                          Navigator.pushNamed(context, 'vendas');
+                          controllerNav.activeMenu.value = 'Dashboard';
+                          Navigator.pushNamed(context, 'dashboard');
                         }),
-                        child: const Text('Vendas'),
+                        child: Text('Dashboard',
+                            style: TextStyle(
+                                color: controllerNav.activeMenu.value ==
+                                        'Dashboard'
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.secondary)),
                       ),
                     ),
                     const NavSeparator(),
@@ -54,29 +82,81 @@ class Nav extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: (() {
+                          controllerNav.activeMenu.value = 'Vendas';
+                          controllerDeals.queryParams.clear();
+                          controllerDeals.filterItemsByQuery(
+                              params: controllerDeals.queryParams);
+                          Navigator.pushNamed(context, 'vendas');
+                        }),
+                        child: Text(
+                          'Vendas',
+                          style: TextStyle(
+                              color: controllerNav.activeMenu.value == 'Vendas'
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.secondary),
+                        ),
+                      ),
+                    ),
+                    const NavSeparator(),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: (() {
+                          controllerNav.activeMenu.value = 'Profissionais';
+                          controllerUsers.queryParams.clear();
+                          controllerUsers.filterItemsByQuery(
+                              params: controllerUsers.queryParams);
                           Navigator.pushNamed(context, 'profissionais');
                         }),
-                        child: const Text('Profissionais'),
+                        child: Text('Profissionais',
+                            style: TextStyle(
+                                color: controllerNav.activeMenu.value ==
+                                        'Profissionais'
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.secondary)),
                       ),
                     ),
                   ],
                 ),
               ),
-              const NavFeatured(),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      const storage = FlutterSecureStorage();
-                      storage.deleteAll();
-                      Navigator.pushNamed(context, '/');
-                    },
-                    child: const Text('Sair'),
+              Wrap(
+                alignment: WrapAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const NavFeatured(),
+                  const SizedBox(
+                    width: 30,
                   ),
-                ),
-              )
+                  Obx(() {
+                    controllerNav.getBrand();
+                    return controllerNav.brand.value.isNotEmpty
+                        ? Image.network(
+                            controllerNav.brand.value,
+                            width: 120,
+                            height: 60,
+                            fit: BoxFit.contain,
+                          )
+                        : const SizedBox();
+                  }),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 20.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          const storage = FlutterSecureStorage();
+                          storage.deleteAll();
+                          Navigator.pushNamed(context, '/');
+                        },
+                        child: const Text('Sair'),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

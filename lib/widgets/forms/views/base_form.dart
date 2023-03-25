@@ -117,7 +117,6 @@ class _BaseFormState extends State<BaseForm> {
                   successMessage: widget.successMessage,
                   isLogin: widget.isLogin,
                 );
-
                 if (formResult.statusCode ~/ 100 == 2) {
                   _formKey.currentState!.save();
                   setState(() {
@@ -129,10 +128,13 @@ class _BaseFormState extends State<BaseForm> {
                 } else if (formResult.statusCode ~/ 100 == 4) {
                   ErrorsApi dataErrors =
                       ErrorsApi.fromJson(jsonDecode(formResult.body));
-                  formReturn = dataErrors.errors
-                      .toString()
-                      .replaceAll("[", "")
-                      .replaceAll("]", "");
+
+                  setState(() {
+                    formReturn = dataErrors.errors
+                        .toString()
+                        .replaceAll("[", "")
+                        .replaceAll("]", "");
+                  });
                 }
               } on TimeoutException {
                 formReturn =

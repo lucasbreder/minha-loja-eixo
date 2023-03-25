@@ -36,13 +36,18 @@ class NumberTotal extends StatelessWidget {
               top: 15.0,
             ),
             child: Wrap(
+              alignment: WrapAlignment.end,
+              crossAxisAlignment: WrapCrossAlignment.end,
               children: [
-                Text(value.substring(0, 2),
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: color,
-                    )),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text(value.substring(0, 2),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: color,
+                      )),
+                ),
                 Text(
                   value.substring(2),
                   style: TextStyle(
