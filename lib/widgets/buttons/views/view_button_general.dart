@@ -22,6 +22,8 @@ class ButtonGeneral extends StatelessWidget {
           margin: const EdgeInsets.only(top: 15.0),
           padding: const EdgeInsets.fromLTRB(48.0, 8.0, 48.0, 8.0),
           decoration: BoxDecoration(
+              border: Border.all(
+                  width: 1, color: Theme.of(context).colorScheme.primary),
               color: themeButton == 'light'
                   ? Colors.white
                   : Theme.of(context).colorScheme.primary,
@@ -29,11 +31,13 @@ class ButtonGeneral extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: themeButton == 'light'
-                  ? Theme.of(context).colorScheme.primary
-                  : Colors.white,
-              fontSize: 14.0,
-            ),
+                color: themeButton == 'light'
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.white,
+                fontSize: 14.0,
+                fontWeight: themeButton == 'light'
+                    ? FontWeight.bold
+                    : FontWeight.normal),
           ),
         ),
       ),

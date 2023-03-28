@@ -148,7 +148,10 @@ class DashboardDealsChart extends StatelessWidget {
                                       fromY: 0,
                                       toY: controllerDeals
                                           .totalsInfo.value.totalByMonth![key],
-                                      width: 30,
+                                      width: MediaQuery.of(context).size.width <
+                                              900
+                                          ? 10
+                                          : 30,
                                       color:
                                           Theme.of(context).colorScheme.primary,
                                     ),

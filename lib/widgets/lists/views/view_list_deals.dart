@@ -56,7 +56,9 @@ class _ListDealsState extends State<ListDeals> {
         NumberFormat.currency(locale: "pt_BR", symbol: 'R\$');
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: MediaQuery.of(context).size.width < 900
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.center,
       children: [
         Obx(
           () => controller.totalsInfo.value.totalDeals != null &&
@@ -65,6 +67,7 @@ class _ListDealsState extends State<ListDeals> {
                   widget.showTotal
               ? Wrap(
                   spacing: 30,
+                  runSpacing: 30,
                   children: [
                     NumberTotal(
                       title: 'Total da temporada',
@@ -93,6 +96,7 @@ class _ListDealsState extends State<ListDeals> {
           child: widget.showFilters
               ? Wrap(
                   spacing: 30,
+                  runSpacing: 10,
                   children: [
                     const ListFilterByStore(),
                     ListFilterPerPage(
@@ -118,6 +122,9 @@ class _ListDealsState extends State<ListDeals> {
                   ],
                 )
               : const SizedBox(),
+        ),
+        const SizedBox(
+          height: 20,
         ),
         Obx(
           (() => controller.isLoading.value
@@ -159,7 +166,8 @@ class _ListDealsState extends State<ListDeals> {
                                     ? widget.limit!
                                     : controller.itemsList.length))
                           ListDealsItem(data: deal),
-                        widget.showPagination
+                        widget.showPagination &&
+                                controller.pagesInfo.value.lastPage! > 1
                             ? Wrap(
                                 spacing: 10,
                                 children: [

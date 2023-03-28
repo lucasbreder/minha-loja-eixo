@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
-import 'package:minha_loja_eixo/widgets/lists/views/view_list_deals.dart';
 import 'package:minha_loja_eixo/widgets/forms/data/data_form_deal.dart';
 import 'package:minha_loja_eixo/widgets/forms/views/base_form.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_list_last_deals.dart';
+import 'package:minha_loja_eixo/widgets/nav/controllers/controller_nav.dart';
 import 'package:minha_loja_eixo/widgets/scaffold/views/base_scaffold.dart';
 import 'package:minha_loja_eixo/widgets/titles/views/view_base_title.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -17,6 +17,8 @@ class PageCreateDeals extends StatelessWidget {
     double pageWidth = MediaQuery.of(context).size.width;
     bool isMobile = MediaQuery.of(context).size.width < 900;
     ControllerDeals controllerDeals = Get.put(ControllerDeals());
+    ControllerNav controllerNav = Get.put(ControllerNav());
+    controllerNav.activeMenu.value = 'Cadastrar Venda';
 
     return BaseScaffold(
       title: 'Cadastrar Venda',

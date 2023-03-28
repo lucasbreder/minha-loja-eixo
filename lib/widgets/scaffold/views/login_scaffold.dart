@@ -30,8 +30,7 @@ class _LoginScaffoldState extends State<LoginScaffold> {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Wrap(
           children: [
             if (widget.showNav!) const Nav(),
             Center(

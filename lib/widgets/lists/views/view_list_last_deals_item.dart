@@ -71,11 +71,15 @@ class ListLastDealsItem extends StatelessWidget {
                                 )),
                       );
                     },
-                    child: Text(
-                      "${customer.firstName.trim()} ${customer.lastName.trim()}",
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 61, 61, 61),
-                        fontSize: 13.0,
+                    child: SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width < 900 ? 120 : 300,
+                      child: Text(
+                        "${customer.firstName.trim()} ${customer.lastName.trim()}",
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 61, 61, 61),
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
                   ),

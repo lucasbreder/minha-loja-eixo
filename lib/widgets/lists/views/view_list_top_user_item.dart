@@ -18,10 +18,12 @@ class ListTopUserItem extends StatelessWidget {
     return Container(
       width: 418,
       padding: const EdgeInsets.only(top: 4, bottom: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        runAlignment: WrapAlignment.center,
         children: [
-          Row(
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {
@@ -69,12 +71,15 @@ class ListTopUserItem extends StatelessWidget {
                               )),
                     );
                   },
-                  child: Text(
-                    maxLines: 3,
-                    '${userData.firstName} ${userData.lastName}',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 16.0,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width < 900 ? 120 : 300,
+                    child: Text(
+                      maxLines: 3,
+                      '${userData.firstName} ${userData.lastName}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
                 ),

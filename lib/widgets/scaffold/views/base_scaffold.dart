@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:minha_loja_eixo/widgets/nav/views/view_featured_nav.dart';
 import 'package:minha_loja_eixo/widgets/nav/views/view_nav.dart';
+import 'package:minha_loja_eixo/widgets/nav/views/view_nav_mobile.dart';
 import 'package:minha_loja_eixo/widgets/titles/views/view_base_title.dart';
 
 class BaseScaffold extends StatefulWidget {
@@ -31,8 +32,9 @@ class _BaseScaffoldState extends State<BaseScaffold> {
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (widget.showNav!) const Nav(),
+            if (widget.showNav!) isMobile ? const NavMobile() : const Nav(),
             Center(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),

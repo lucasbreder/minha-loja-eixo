@@ -3,24 +3,19 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
+import 'package:minha_loja_eixo/widgets/lists/controllers/controller_redeems.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_users.dart';
 import 'package:minha_loja_eixo/widgets/nav/controllers/controller_nav.dart';
 import 'package:minha_loja_eixo/widgets/nav/views/view_featured_nav.dart';
 
-class Nav extends StatefulWidget {
+class Nav extends StatelessWidget {
   const Nav({super.key});
-
-  @override
-  State<Nav> createState() => _NavState();
-}
-
-class _NavState extends State<Nav> {
-  String activeMenu = '';
 
   @override
   Widget build(BuildContext context) {
     ControllerDeals controllerDeals = Get.put(ControllerDeals());
     ControllerUsers controllerUsers = Get.put(ControllerUsers());
+    ControllerRedeem controllerRedeems = Get.put(ControllerRedeem());
     ControllerNav controllerNav = Get.put(ControllerNav());
 
     return Container(
@@ -50,8 +45,9 @@ class _NavState extends State<Nav> {
               Container(
                 margin: const EdgeInsets.only(top: 20.0),
                 constraints: const BoxConstraints(minWidth: 200, maxWidth: 600),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     SvgPicture.asset(
                       'assets/images/eixo_brand.svg',
@@ -66,7 +62,6 @@ class _NavState extends State<Nav> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: (() {
-                          controllerNav.activeMenu.value = 'Dashboard';
                           controllerDeals.queryParams.clear();
                           controllerDeals.filterItemsByQuery(
                               params: controllerDeals.queryParams);
@@ -85,7 +80,6 @@ class _NavState extends State<Nav> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: (() {
-                          controllerNav.activeMenu.value = 'Vendas';
                           controllerDeals.queryParams.clear();
                           controllerDeals.filterItemsByQuery(
                               params: controllerDeals.queryParams);
@@ -105,7 +99,6 @@ class _NavState extends State<Nav> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: (() {
-                          controllerNav.activeMenu.value = 'Profissionais';
                           controllerUsers.queryParams.clear();
                           controllerUsers.filterItemsByQuery(
                               params: controllerUsers.queryParams);
@@ -119,11 +112,29 @@ class _NavState extends State<Nav> {
                                     : Theme.of(context).colorScheme.secondary)),
                       ),
                     ),
+                    const NavSeparator(),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: (() {
+                          controllerRedeems.queryParams.clear();
+                          controllerRedeems.filterItemsByQuery(
+                              params: controllerUsers.queryParams);
+                          Navigator.pushNamed(context, 'resgates');
+                        }),
+                        child: Text('Resgates',
+                            style: TextStyle(
+                                color: controllerNav.activeMenu.value ==
+                                        'Resgates'
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.secondary)),
+                      ),
+                    ),
                   ],
                 ),
               ),
               Wrap(
-                alignment: WrapAlignment.end,
+                alignment: WrapAlignment.center,
                 crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   const NavFeatured(),
@@ -136,7 +147,7 @@ class _NavState extends State<Nav> {
                         ? Image.network(
                             controllerNav.brand.value,
                             width: 120,
-                            height: 60,
+                            height: 50,
                             fit: BoxFit.contain,
                           )
                         : const SizedBox();

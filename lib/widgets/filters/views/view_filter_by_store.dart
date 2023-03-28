@@ -27,7 +27,10 @@ class _ListFilterByStoreState extends State<ListFilterByStore> {
           value: "0",
           child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Selecione"),
+            child: Text(
+              "Selecione",
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ),
       );
@@ -39,7 +42,10 @@ class _ListFilterByStoreState extends State<ListFilterByStore> {
             value: store.id.toString(),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(store.name),
+              child: Text(
+                store.name,
+                style: const TextStyle(color: Colors.black),
+              ),
             ),
           ),
         );

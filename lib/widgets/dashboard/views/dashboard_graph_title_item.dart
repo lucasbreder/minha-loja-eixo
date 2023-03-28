@@ -11,10 +11,10 @@ class GraphTitleItem extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5),
       child: Text(
         title,
-        style: const TextStyle(
-          color: Color(0xff68737d),
+        style: TextStyle(
+          color: const Color(0xff68737d),
           fontWeight: FontWeight.bold,
-          fontSize: 12,
+          fontSize: MediaQuery.of(context).size.width < 900 ? 4 : 12,
         ),
       ),
     );

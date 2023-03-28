@@ -7,6 +7,7 @@ import 'package:minha_loja_eixo/widgets/details/views/detail_profile_user.dart';
 import 'package:minha_loja_eixo/widgets/lists/controllers/controller_deals.dart';
 import 'package:minha_loja_eixo/widgets/lists/models/model_user.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_list_deals.dart';
+import 'package:minha_loja_eixo/widgets/lists/views/view_list_redeems.dart';
 
 class DetailUser extends StatelessWidget {
   const DetailUser({required this.data, super.key});
@@ -162,23 +163,33 @@ class DetailUser extends StatelessWidget {
           height: 100,
         ),
         Text(
-          'Histórico de Vendas e Resgates',
+          'Histórico de Vendas',
           style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(
-          height: 40,
-        ),
         const ListDeals(
           showTotal: false,
+          showPagination: true,
         ),
         const SizedBox(
           height: 40,
         ),
         const DashboardDealsChart(),
+        const SizedBox(
+          height: 40,
+        ),
+        Text(
+          'Histórico de Resgates',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const ListRedeems(),
       ],
     );
   }

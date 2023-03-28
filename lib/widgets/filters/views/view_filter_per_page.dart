@@ -74,7 +74,10 @@ class _ListFilterPerPage extends State<ListFilterPerPage> {
                 value: item.toString(),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(item.toString()),
+                  child: Text(
+                    item.toString(),
+                    style: const TextStyle(color: Colors.black),
+                  ),
                 ),
               ),
           ],

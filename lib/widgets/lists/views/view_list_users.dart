@@ -10,19 +10,14 @@ import 'package:minha_loja_eixo/widgets/lists/views/view_list_user_item.dart';
 import 'package:minha_loja_eixo/widgets/lists/views/view_pagination.dart';
 import 'package:minha_loja_eixo/widgets/loader/views/Loader.dart';
 
-class ListUsers extends StatefulWidget {
+class ListUsers extends StatelessWidget {
   const ListUsers({super.key});
 
   @override
-  State<ListUsers> createState() => _ListUsersState();
-}
-
-class _ListUsersState extends State<ListUsers> {
-  ControllerUsers controllerUsers = Get.put(ControllerUsers());
-  ControllerDeals controllerDeals = Get.put(ControllerDeals());
-
-  @override
   Widget build(BuildContext context) {
+    ControllerUsers controllerUsers = Get.put(ControllerUsers());
+    ControllerDeals controllerDeals = Get.put(ControllerDeals());
+
     return Obx(() => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,6 +26,7 @@ class _ListUsersState extends State<ListUsers> {
               padding: const EdgeInsets.only(top: 30, bottom: 30),
               child: Wrap(
                 spacing: 30,
+                runSpacing: 30,
                 children: [
                   ListFilterSearch(
                     controller: controllerUsers,

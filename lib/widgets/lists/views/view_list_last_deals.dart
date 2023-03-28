@@ -16,7 +16,7 @@ class ListLastDeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ControllerDeals controller = Get.put(ControllerDeals());
-
+    print(controller.itemsList.isEmpty);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +40,7 @@ class ListLastDeals extends StatelessWidget {
                       Loader(),
                     ],
                   )
-                : controller.itemsList.isEmpty
+                : filteredList.isEmpty
                     ? Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,

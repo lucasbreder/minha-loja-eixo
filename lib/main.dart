@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:minha_loja_eixo/pages/page_create_deals.dart';
 import 'package:minha_loja_eixo/pages/page_dashboard.dart';
 import 'package:minha_loja_eixo/pages/page_login.dart';
-import 'package:minha_loja_eixo/pages/page_ranking.dart';
 import 'package:minha_loja_eixo/pages/page_reedems.dart';
 import 'package:minha_loja_eixo/pages/page_deals.dart';
 import 'package:minha_loja_eixo/pages/page_users.dart';
@@ -73,11 +72,10 @@ class MyApp extends StatelessWidget {
           )),
       routes: {
         '/': (context) => const PageLogin(),
-        'cadastrar-venda': (context) => const PageCreateDeals(),
         'dashboard': (context) => const PageDashboard(),
+        'cadastrar-venda': (context) => const PageCreateDeals(),
         'profissionais': (context) => const PageUsers(),
         'vendas': (context) => const PageSeals(),
-        'ranking': (context) => const PageRanking(),
         'resgates': (context) => const PageReedems(),
       },
     );
