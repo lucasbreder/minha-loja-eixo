@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:minha_loja_eixo/pages/page_create_deals.dart';
-import 'package:minha_loja_eixo/pages/page_dashboard.dart';
-import 'package:minha_loja_eixo/pages/page_login.dart';
-import 'package:minha_loja_eixo/pages/page_reedems.dart';
-import 'package:minha_loja_eixo/pages/page_deals.dart';
-import 'package:minha_loja_eixo/pages/page_users.dart';
+import 'package:minha_loja_eixo/screens/page_balances.dart';
+import 'package:minha_loja_eixo/screens/page_create_deals.dart';
+import 'package:minha_loja_eixo/screens/page_dashboard.dart';
+import 'package:minha_loja_eixo/screens/page_login.dart';
+import 'package:minha_loja_eixo/screens/page_reedems.dart';
+import 'package:minha_loja_eixo/screens/page_deals.dart';
+import 'package:minha_loja_eixo/screens/page_users.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
         'profissionais': (context) => const PageUsers(),
         'vendas': (context) => const PageSeals(),
         'resgates': (context) => const PageReedems(),
+        'balancos': (context) => const PageBalances(),
       },
     );
   }
